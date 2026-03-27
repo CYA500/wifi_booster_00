@@ -20,12 +20,11 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-        continue-on-error: true # لضمان عدم التوقف إذا لم يجد الملف
+     - name: Grant execute permission for gradlew
+        run: chmod +x gradlew || true # أضفنا true لكي لا يتوقف إذا لم يجد الملف
 
       - name: Build with Gradle
-        run: ./gradlew assembleDebug
+        run: gradle assembleDebug # غيرنا ./gradlew إلى gradle فقط
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4

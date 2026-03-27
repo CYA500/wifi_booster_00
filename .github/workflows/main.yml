@@ -2,13 +2,12 @@ name: Build Nexus Booster APK
 
 on:
   push:
-    branches: [ "main" ] # سيبدأ البناء فوراً عند الحفظ
-  workflow_dispatch: # يتيح لك بدء البناء يدوياً أيضاً
+    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -20,14 +19,14 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-     - name: Grant execute permission for gradlew
-        run: chmod +x gradlew || true # أضفنا true لكي لا يتوقف إذا لم يجد الملف
+      - name: Generate Gradle Wrapper
+        run: gradle wrapper # هذا الأمر سيصنع ملف gradlew الذي كان ناقصاً
 
       - name: Build with Gradle
-        run: gradle assembleDebug # غيرنا ./gradlew إلى gradle فقط
-
-      - name: Upload APK Artifact
+        run: ./gradlew assembleDebug
+        
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Nexus-Booster-App
+          name: Nexus-Booster
           path: app/build/outputs/apk/debug/app-debug.apk

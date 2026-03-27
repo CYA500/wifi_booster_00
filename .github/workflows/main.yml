@@ -19,11 +19,14 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      - name: Generate Gradle Wrapper
-        run: gradle wrapper # هذا الأمر سيصنع ملف gradlew الذي كان ناقصاً
+      # هنا السر: إجبار السيرفر على استخدام نسخة 8.10.2 المستقرة
+      - name: Setup Gradle 8.10.2
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: 8.10.2
 
       - name: Build with Gradle
-        run: ./gradlew assembleDebug
+        run: gradle assembleDebug
         
       - name: Upload APK
         uses: actions/upload-artifact@v4

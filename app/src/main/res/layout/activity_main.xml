@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#F7F7F5"> <TextView
+    android:background="@color/background_ivory"> <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nexus WiFi Bridge"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:textColor="#212121"
+        android:textColor="@color/text_dark"
         android:layout_marginBottom="40dp"/>
 
     <Button
@@ -18,8 +18,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start Boosting"
-        android:backgroundTint="#EBB328" 
-        android:textColor="#FFFFFF"
+        android:backgroundTint="@color/primary" 
+        android:textColor="@color/white"
         android:padding="16dp"
         android:textSize="18sp"
         android:textStyle="bold"/>
